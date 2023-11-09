@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 import statsmodels.api as sm
+from statsmodels.tsa.stattools import acf
+from statsmodels.tsa.stattools import pacf
 
 # Load the dataset into a DataFrame
 df = pd.read_csv('Stocks.csv')
@@ -14,15 +16,12 @@ df = df.dropna(subset=['Log_Returns'])
 
 simple_returns_column = df['Simple_Returns']
 
-# Fit an AutoReg(10) model
-lags = 10  # Number of lags (AR terms)
-model = sm.tsa.AutoReg(simple_returns_column, lags=lags)
-results = model.fit()
+print("The following is ACF")
+simple_returns_acf = acf(simple_returns_column, nlags=10)
+print(simple_returns_acf)
 
-print(results.summary())
+print("The following is PACF")
+pacf_values = pacf(simple_returns_column, nlags=10)
+print(pacf_values)
 
-#df_simple_returns = df[['Date', 'Simple_Returns']]
-#df_simple_returns = df[['Date', 'Simple_Returns']]
-#print(df_simple_returns)
-#pd.plotting.lag_plot(df_simple_returns, lag=1)
 
