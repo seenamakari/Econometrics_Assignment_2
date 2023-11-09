@@ -13,5 +13,8 @@ df = df.dropna(subset=['Simple_Returns'])
 simple_return = (df['Close'] / df['Close'].shift(1)) - 1
 simple_return = simple_return.dropna()
 
+log_return = numpy.log(df['Close']) - numpy.log(df['Close'].shift(1))
+log_return = log_return.dropna()
 
 print(simple_return)
+print (log_return)
