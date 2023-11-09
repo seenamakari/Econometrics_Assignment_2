@@ -18,3 +18,4 @@ log_return = log_return.dropna()
 
 print(simple_return)
 print (log_return)
+
