@@ -10,23 +10,6 @@ df = pd.read_csv('Question_2.csv')
 df['date'] = pd.to_datetime(df['date'])
 df.set_index('date', inplace=True)
 
-
 model = VAR(df)
 results = model.fit(1)  # Fit a VAR(1) model
 print(results.summary())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
